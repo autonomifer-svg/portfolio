@@ -1,0 +1,232 @@
+/* Estilos Generales */
+body {
+    background-color: #1a1a1a; /* Fondo oscuro para el look retro */
+    color: #f0f0f0; /* Texto principal claro */
+    font-family: 'VT323', monospace; /* Fuente secundaria para el cuerpo */
+    margin: 0;
+    padding: 0;
+    line-height: 1.6;
+}
+
+h1, h2, h3 {
+    font-family: 'Press Start 2P', cursive; /* Fuente principal retro */
+}
+
+ul {
+    list-style: none;
+    padding-left: 0;
+}
+
+li {
+    margin-bottom: 10px;
+}
+
+/* Encabezado (Hero) con Scanlines */
+.hero {
+    position: relative; /* Necesario para el pseudo-elemento de scanlines */
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    background: #1a1a1a;
+    overflow: hidden;
+}
+
+/* Efecto de Scanlines */
+.hero::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: repeating-linear-gradient(
+        0deg,
+        rgba(0, 0, 0, 0.3),
+        rgba(0, 0, 0, 0.3) 1px,
+        transparent 1px,
+        transparent 2px
+    );
+    animation: scanline 10s linear infinite;
+    pointer-events: none; /* Para que no interfiera con el texto */
+}
+
+@keyframes scanline {
+    0% { transform: translateY(0); }
+    100% { transform: translateY(20px); }
+}
+
+.hero-text h1 {
+    font-size: 3rem;
+    color: #00ff9b;
+    text-shadow: 3px 3px 0px #ff00ff;
+    position: relative; /* Para que esté por encima de las scanlines */
+    z-index: 1;
+}
+
+/* Secciones y Animación de Scroll */
+main {
+    width: 90%;
+    max-width: 1000px;
+    margin: 40px auto;
+}
+
+section, .project-card, .experience-card, .freelance-card {
+    opacity: 0;
+    transform: translateY(30px);
+    transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+}
+
+section.visible, .project-card.visible, .experience-card.visible, .freelance-card.visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+section {
+    padding: 40px 20px;
+    margin-bottom: 40px;
+    border: 2px solid #f0f0f0;
+    box-shadow: 0 0 15px rgba(255, 255, 255, 0.1);
+}
+
+section h2 {
+    text-align: center;
+    font-size: 2rem;
+    margin-bottom: 30px;
+    color: #f0f0f0;
+}
+
+/* Grid de Experiencia y Freelance */
+.experience-grid, .freelance-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 30px;
+}
+
+.experience-card, .freelance-card {
+    background: #2b2b2b;
+    padding: 25px;
+    border: 2px solid #444;
+    transition: box-shadow 0.3s ease;
+}
+
+.experience-card h3, .freelance-card h3 {
+    color: #00ff9b;
+    margin-bottom: 15px;
+}
+
+/* Grid de Skills */
+.skills-grid {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 15px;
+}
+
+.skills-grid span {
+    background-color: #333;
+    color: #00ff9b;
+    padding: 10px 20px;
+    border-radius: 5px;
+    font-family: 'VT323', monospace;
+    font-size: 1.1rem;
+    border: 1px solid #00ff9b;
+}
+
+/* Grid de Proyectos */
+.project-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 30px;
+}
+
+.project-card {
+    background: #2b2b2b;
+    padding: 25px;
+    border: 2px solid #444;
+    text-align: center;
+    transition: opacity 0.6s ease-out, transform 0.6s ease-out, box-shadow 0.3s ease;
+}
+
+.project-card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.4);
+}
+
+.project-card h3 {
+    color: #00ff9b;
+    margin-bottom: 15px;
+}
+
+.project-image {
+    width: 100%;
+    height: 180px;
+    object-fit: cover;
+    margin-bottom: 20px;
+    border: 2px solid #444;
+}
+
+/* Contenedor de Botones */
+.button-container {
+    margin-top: 20px;
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+}
+
+/* Botones Interactivos */
+.btn {
+    font-family: 'Press Start 2P', cursive;
+    text-decoration: none;
+    padding: 12px 24px;
+    border: 2px solid;
+    font-size: 0.9rem;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.btn-color-1 { background-color: #ff00ff; color: #fff; border-color: #ff00ff; }
+.btn-color-1:hover { background-color: transparent; color: #ff00ff; }
+.btn-color-2 { background-color: #00ffff; color: #1a1a1a; border-color: #00ffff; }
+.btn-color-2:hover { background-color: transparent; color: #00ffff; }
+
+/* Estilos del Juego */
+#game-section { text-align: center; }
+.game-wrapper { display: flex; flex-direction: column; align-items: center; }
+.game-container { position: relative; display: inline-block; }
+
+#game-overlay {
+    position: absolute;
+    top: 0; left: 0; width: 100%; height: 100%;
+    display: flex; flex-direction: column; justify-content: center; align-items: center;
+    background-color: rgba(0, 0, 0, 0.7);
+    gap: 20px;
+}
+
+#snake-canvas { background-color: #000; border: 4px solid #00ff9b; box-shadow: 0 0 10px #00ff9b; display: block; }
+#game-info { font-family: 'Press Start 2P', cursive; font-size: 1.2rem; color: #fff; margin-top: 20px; }
+.game-instructions { margin-top: 15px; font-size: 1rem; color: #aaa; }
+.mobile-game-notice { display: none; font-size: 1.1rem; color: #00ffff; }
+
+/* Contacto y Footer */
+#contact { text-align: center; }
+.contact-email { font-family: 'Press Start 2P', cursive; color: #00ff9b; font-size: 1.2rem; margin-top: 20px; text-shadow: 2px 2px 0px #ff00ff; }
+
+.social-links { margin-top: 25px; display: flex; justify-content: center; gap: 25px; }
+.social-links a svg {
+    width: 32px;
+    height: 32px;
+    fill: #f0f0f0;
+    transition: fill 0.3s ease, transform 0.3s ease;
+}
+.social-links a:hover svg { fill: #00ff9b; transform: scale(1.1); }
+
+footer { text-align: center; padding: 20px; margin-top: 40px; font-size: 0.9rem; color: #888; }
+
+/* Media Query para Móviles */
+@media (max-width: 768px) {
+    .hero-text h1 { font-size: 2rem; }
+    .game-container, .game-instructions, #game-info { display: none; }
+    .mobile-game-notice { display: block; }
+}
